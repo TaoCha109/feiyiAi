@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型训练台 | 非遗传承</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #CD5C5C;
+            --text-color: #333;
+            --light-bg: #FFF8E7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            background-image: url('https://img.freepik.com/free-vector/chinese-pattern-background_53876-90035.jpg');
+            background-size: 30%;
+            background-blend-mode: overlay;
+            background-attachment: fixed;
+            background-color: rgba(255, 248, 231, 0.9);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 - 与首页一致 */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 训练台内容 */
+        .train-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .param-group {
+            margin-bottom: 1.8rem;
+            padding: 1.5rem;
+            background: rgba(210, 180, 140, 0.1);
+            border-radius: 8px;
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .param-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .param-group input[type="number"],
+        .param-group input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .train-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 2rem 0;
+        }
+
+        .train-btn:hover {
+            background: linear-gradient(135deg, #5D4037, var(--primary-color));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--secondary-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            background: rgba(210, 180, 140, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: rgba(210, 180, 140, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .upload-area i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 页脚 - 与首页一致 */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .train-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-mountain"></i>
+                非遗传承
+            </a>
+            <div class="nav-links">
+                <a href="/">首页</a>
+                <a href="/ai">AI对话</a>
+                <a href="/help">帮助</a>
+                <a href="/train">训练台</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 训练台内容 -->
+    <div class="container">
+        <div class="train-container">
+            <h1 class="page-title">模型训练工作台</h1>
+
+            <div class="param-group">
+                <label for="learning-rate"><i class="fas fa-tachometer-alt"></i> 学习率</label>
+                <input type="number" id="learning-rate" step="0.0001" value="0.001" min="0.0001">
+            </div>
+
+            <div class="param-group">
+                <label for="epochs"><i class="fas fa-redo"></i> 训练轮次</label>
+                <input type="number" id="epochs" value="10" min="1">
+            </div>
+
+            <div class="param-group">
+                <label for="batch-size"><i class="fas fa-layer-group"></i> 批次大小</label>
+                <input type="number" id="batch-size" value="32" min="1">
+            </div>
+
+            <button class="train-btn" onclick="alert('训练开始！实际使用时将调用API')">
+                <i class="fas fa-play"></i> 开始训练模型
+            </button>
+
+            <h2 style="color: var(--primary-color); margin: 2rem 0 1rem;">
+                <i class="fas fa-upload"></i> 训练数据上传
+            </h2>
+
+            <div class="upload-area" onclick="document.getElementById('dataFile').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>点击或拖拽文件到此处</h3>
+                <p>支持JSON、CSV、TXT格式的非遗数据文件</p>
+                <input type="file" id="dataFile" style="display: none;">
+            </div>
+
+            <div style="margin-top: 2rem; color: var(--accent-color);">
+                <i class="fas fa-info-circle"></i> 提示：训练过程可能需要几分钟到几小时，请耐心等待
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                &copy; 2025 非物质文化遗产保护平台 | 保留所有权利
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的文件上传反馈
+        document.getElementById('dataFile').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                alert(`已选择文件: ${this.files[0].name}`);
+            }
+        });
+    </script>
+</body>
+</html>

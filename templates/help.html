@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帮助中心 | 非遗传承</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #CD5C5C;
+            --text-color: #333;
+            --light-bg: #FFF8E7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            background-image: url('https://img.freepik.com/free-vector/chinese-pattern-background_53876-90035.jpg');
+            background-size: 30%;
+            background-blend-mode: overlay;
+            background-attachment: fixed;
+            background-color: rgba(255, 248, 231, 0.9);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 - 与首页一致 */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 帮助内容 */
+        .help-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .help-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .help-section h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .faq-item {
+            background: rgba(210, 180, 140, 0.1);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px dashed var(--secondary-color);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .contact-info i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* 页脚 - 与首页一致 */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .help-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-mountain"></i>
+                非遗传承
+            </a>
+            <div class="nav-links">
+                <a href="/">首页</a>
+                <a href="/ai">AI对话</a>
+                <a href="/help">帮助</a>
+                <a href="/train">训练台</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 帮助内容 -->
+    <div class="container">
+        <div class="help-container">
+            <h1 class="page-title">帮助中心</h1>
+
+            <div class="help-section">
+                <h2><i class="fas fa-question-circle"></i> 使用指南</h2>
+                <div class="faq-item">
+                    <h3>如何提问？</h3>
+                    <p>直接在AI对话界面输入您关于非物质文化遗产的问题即可，例如："京剧有哪些经典剧目？"或"如何制作景泰蓝？"</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>支持哪些非遗类型？</h3>
+                    <p>涵盖所有国家级非遗项目，包括传统戏剧、民间文学、传统技艺、民俗等十大类别。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>数据来源可靠吗？</h3>
+                    <p>所有数据均来自文化部非遗数据库、权威文献及认证传承人提供的一手资料。</p>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <h2><i class="fas fa-envelope"></i> 联系我们</h2>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>邮箱：</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <p>电话：</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>地址：</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                &copy; 2025 非物质文化遗产保护平台 | 保留所有权利
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

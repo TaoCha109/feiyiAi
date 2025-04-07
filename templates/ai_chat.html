@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI非遗助手 | 非遗传承</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #CD5C5C;
+            --text-color: #333;
+            --light-bg: #FFF8E7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            background-image: url('https://img.freepik.com/free-vector/chinese-pattern-background_53876-90035.jpg');
+            background-size: 30%;
+            background-blend-mode: overlay;
+            background-attachment: fixed;
+            background-color: rgba(255, 248, 231, 0.9);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 - 与首页一致 */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        /* 聊天区域 */
+        .chat-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .chat-history {
+            height: 500px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            border-radius: 8px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 248, 231, 0.3);
+        }
+
+        .message {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .user {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .bot {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            padding: 0 2rem;
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #5D4037, var(--primary-color));
+            transform: translateY(-2px);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 0.8rem 1.5rem;
+            background: rgba(210, 180, 140, 0.3);
+            border-radius: 20px;
+            margin: 1rem auto;
+            width: fit-content;
+            font-style: italic;
+            color: var(--primary-color);
+        }
+
+        /* 页脚 - 与首页一致 */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), #5D4037);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                padding: 1rem;
+                margin: 1.5rem auto;
+            }
+
+            .chat-history {
+                height: 400px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-mountain"></i>
+                非遗传承
+            </a>
+            <div class="nav-links">
+                <a href="/">首页</a>
+                <a href="/ai">AI对话</a>
+                <a href="/help">帮助</a>
+                <a href="/train">训练台</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 聊天主区域 -->
+    <div class="container">
+        <div class="chat-container">
+            <h1 class="page-title">非遗AI助手</h1>
+            <div class="chat-history" id="chatHistory">
+                <div class="message bot">您好！我是非遗AI助手，可以回答关于非物质文化遗产的各种问题。请问有什么可以帮您的吗？</div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="userInput" placeholder="输入关于非遗的问题..." autocomplete="off">
+                <button onclick="sendMessage()">发送 <i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">AI正在思考...</div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                &copy; 2025 非物质文化遗产保护平台 | 保留所有权利
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 原有JavaScript代码保持不变
+        const userInput = document.getElementById('userInput');
+        const chatHistory = document.getElementById('chatHistory');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            chatHistory.innerHTML += `<div class="message user">${escapeHtml(message)}</div>`;
+            userInput.value = '';
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            typingIndicator.style.display = 'block';
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) throw new Error(`请求失败: ${response.status}`);
+
+                const data = await response.json();
+                if (data.error) throw new Error(data.error);
+
+                chatHistory.innerHTML += `<div class="message bot">${formatResponse(data.reply)}</div>`;
+            } catch (error) {
+                chatHistory.innerHTML += `<div class="message bot" style="color: var(--accent-color);">错误: ${escapeHtml(error.message)}</div>`;
+            } finally {
+                typingIndicator.style.display = 'none';
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatResponse(text) {
+            return escapeHtml(text).replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+</html>
